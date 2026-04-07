@@ -1,0 +1,209 @@
+/**
+ * Audio Controls Styling
+ */
+
+.audio-controls-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  border: 2px solid var(--phosphor-main);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  background:
+    linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 10, 5, 0.95) 100%);
+  box-shadow:
+    0 0 20px rgba(51, 255, 0, 0.3),
+    inset 0 0 10px rgba(51, 255, 0, 0.05);
+  z-index: var(--z-floating);
+  animation: panelSlideIn 0.3s ease-out;
+}
+
+.audio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px dashed var(--phosphor-dim);
+}
+
+.audio-title {
+  color: var(--phosphor-bright);
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.audio-close-btn {
+  background: none;
+  border: none;
+  color: var(--phosphor-dim);
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  transition: all var(--transition-fast);
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.audio-close-btn:hover {
+  color: var(--phosphor-main);
+  transform: scale(1.2);
+}
+
+/**
+ * Control Group
+ */
+.audio-control-group {
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.control-label {
+  color: var(--phosphor-dim);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.control-slider {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.volume-slider {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(51, 255, 0, 0.1);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid var(--phosphor-dim);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--phosphor-main);
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(51, 255, 0, 0.5);
+  transition: all 0.15s ease-out;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(51, 255, 0, 0.8);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--phosphor-main);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(51, 255, 0, 0.5);
+  transition: all 0.15s ease-out;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(51, 255, 0, 0.8);
+}
+
+.volume-display {
+  color: var(--phosphor-bright);
+  font-weight: bold;
+  min-width: 45px;
+  text-align: right;
+  font-size: var(--font-size-sm);
+}
+
+/**
+ * Mute Button
+ */
+.btn-mute {
+  width: 100%;
+  padding: var(--space-md);
+  border: 2px solid var(--phosphor-main);
+  background: rgba(51, 255, 0, 0.1);
+  color: var(--phosphor-main);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-sm);
+}
+
+.btn-mute:hover {
+  background: rgba(51, 255, 0, 0.2);
+  box-shadow: 0 0 8px rgba(51, 255, 0, 0.3);
+}
+
+.btn-mute.muted {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-mute.muted:hover {
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+/**
+ * Info Section
+ */
+.audio-info {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px dashed var(--phosphor-dim);
+  text-align: center;
+}
+
+.info-text {
+  color: var(--phosphor-dim);
+  font-size: var(--font-size-sm);
+}
+
+#active-sounds {
+  color: var(--phosphor-bright);
+  font-weight: bold;
+}
+
+/**
+ * Responsive
+ */
+@media (max-width: 720px) {
+  .audio-controls-panel {
+    width: 250px;
+    bottom: 10px;
+    right: 10px;
+    padding: var(--space-md);
+  }
+
+  .volume-slider {
+    height: 4px;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+  }
+}
