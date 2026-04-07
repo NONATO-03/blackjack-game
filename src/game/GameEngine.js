@@ -31,8 +31,11 @@ export class GameEngine {
     return GameEngine.#instance;
   }
 
-  private constructor() {
-    // Private para forçar singleton
+  constructor() {
+    // Private: forçar singleton via getInstance()
+    if (GameEngine.#instance) {
+      throw new Error('Use GameEngine.getInstance() para acessar o singleton');
+    }
   }
 
   /**
