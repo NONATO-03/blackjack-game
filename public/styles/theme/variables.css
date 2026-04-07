@@ -1,0 +1,198 @@
+/**
+ * CSS Variables - Design system colors and sizing
+ */
+
+:root {
+  /* CRT Phosphor Colors */
+  --phosphor-main: #33ff00;
+  --phosphor-bright: #66ff00;
+  --phosphor-dim: #1a8000;
+  --phosphor-dark: #0d4000;
+  --phosphor-bg: #050505;
+  --phosphor-shadow: rgba(51, 255, 0, 0.2);
+
+  /* Neutral */
+  --black: #000000;
+  --dark-gray: #1a1a1a;
+  --gray: #333333;
+  --light-gray: #cccccc;
+  --white: #ffffff;
+
+  /* Status Colors */
+  --success: #00ff00;
+  --danger: #ff0000;
+  --warning: #ffaa00;
+  --info: #00aaff;
+
+  /* Typography */
+  --font-mono: 'VT323', monospace;
+  --font-size-base: 16px;
+  --font-size-sm: 12px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+
+  /* Shadow */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.9);
+
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-static: 10;
+  --z-floating: 20;
+  --z-modal: 100;
+  --z-tooltip: 200;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 300ms ease-out;
+  --transition-slow: 500ms ease-out;
+
+  /* CRT Effect Timing */
+  --crt-warp-period: 2s;
+  --crt-scanline-opacity: 0.24;
+  --crt-glow-opacity: 0.15;
+}
+
+/**
+ * Base reset
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Body base
+ */
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  /* Background gradient */
+  background:
+    radial-gradient(circle at 20% 15%, #232323 0%, #111 44%, #090909 100%);
+
+  /* Font base */
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  color: var(--phosphor-main);
+
+  /* Line height for CRT feel */
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+
+  /* Text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Typography base
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  color: var(--phosphor-main);
+  text-shadow: 0 0 2px var(--phosphor-dim), 0 0 8px var(--phosphor-dim);
+  margin-bottom: var(--space-md);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  color: var(--phosphor-main);
+}
+
+button {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: var(--font-mono);
+}
+
+/**
+ * Link styling
+ */
+a {
+  color: var(--phosphor-bright);
+  text-decoration: none;
+  border-bottom: 1px solid var(--phosphor-main);
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--phosphor-bright);
+  text-shadow: 0 0 4px var(--phosphor-main);
+}
+
+/**
+ * Utility Classes
+ */
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-1 { margin-top: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+
+.mb-1 { margin-bottom: var(--space-sm); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mb-3 { margin-bottom: var(--space-lg); }
+
+.p-1 { padding: var(--space-sm); }
+.p-2 { padding: var(--space-md); }
+.p-3 { padding: var(--space-lg); }
+
+/**
+ * Responsive
+ */
+@media (max-width: 1200px) {
+  :root {
+    --font-size-base: 14px;
+    --font-size-xl: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 12px;
+    --font-size-lg: 14px;
+  }
+
+  body {
+    padding: 5px;
+  }
+}

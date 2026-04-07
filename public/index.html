@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blackjack Game - CRT Retro Terminal Style">
+  <meta name="theme-color" content="#050505">
+
+  <title>Blackjack Game - CRT Terminal</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css">
+  
+  <style>
+    /* Fallback: esconder conteúdo até JS carregar */
+    .js-required {
+      display: none;
+    }
+    
+    .js-enabled .js-required {
+      display: block;
+    }
+    
+    .js-enabled .server-warning {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Screen -->
+  <div id="screen">
+    <div id="scanlines"></div>
+    <div id="main-layout">
+      <div id="crt-content">
+        <!-- Conteúdo renderizado dinamicamente aqui -->
+        <div style="text-align: center; padding: 20px;">
+          <p>Inicializando...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG Filters para CRT Effect -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden;">
+    <defs>
+      <filter id="generated-warp" x="0%" y="0%" width="100%" height="100%">
+        <feImage id="warp-map-data" result="Map" preserveAspectRatio="none" />
+        <feDisplacementMap id="disp-map" in="SourceGraphic" in2="Map" scale="0" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Development Console Hook -->
+  <script>
+    // Flag para indicar que JS está ativo
+    document.documentElement.className = 'js-enabled';
+    
+    console.log('🎰 Blackjack Game - v1.0.0-beta');
+    
+    // Detectar se ES modules podem ser carregados
+    const isFileProtocol = location.protocol === 'file:';
+    
+    if (isFileProtocol) {
+      // Mostrar aviso sobre servidor necessário
+      const errorBox = document.createElement('div');
+      errorBox.className = 'server-warning';
+      errorBox.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(5, 5, 5, 0.95);
+        border: 2px solid #33ff00;
+        padding: 30px;
+        border-radius: 8px;
+        font-family: 'VT323', monospace;
+        color: #33ff00;
+        text-shadow: 0 0 8px #33ff00;
+        max-width: 600px;
+        z-index: 1000;
+        line-height: 1.8;
+      `;
+      
+      errorBox.innerHTML = `
+        <div style="font-size: 20px; margin-bottom: 20px; text-align: center;">
+          ⚠️ SERVIDOR HTTP NECESSÁRIO
+        </div>
+        <div style="font-size: 14px;">
+          <p>Este projeto usa ES Modules. Escolha uma opção:</p>
+          <p style="margin-top: 20px; border-top: 1px dashed #33ff00; padding-top: 15px;">
+            <strong>✓ SEM ADMIN (Recomendado):</strong>
+          </p>
+          <pre style="background: rgba(0,0,0,0.5); padding: 10px; margin: 10px 0;">python -m http.server 8000</pre>
+          <p><strong>✓ COM NODE.JS:</strong></p>
+          <pre style="background: rgba(0,0,0,0.5); padding: 10px; margin: 10px 0;">npx http-server</pre>
+          <p><strong>✓ EDITOR VS CODE:</strong></p>
+          <p>Instale a extensão "Live Server" e clique direito no arquivo</p>
+          <p style="margin-top: 20px; color: #66ff00; border-top: 1px dashed #33ff00; padding-top: 15px;">
+            📌 Porta 8000 NÃO PRECISA DE ADMIN!
+          </p>
+          <p style="margin-top: 10px;">
+            Acesse: <strong>http://localhost:8000</strong>
+          </p>
+        </div>
+      `;
+      
+      document.body.appendChild(errorBox);
+      console.error('❌ Carregamento de módulos bloqueado (file:// protocol)');
+      console.log('📌 Execute um servidor HTTP local');
+    } else {
+      // Carregar módulos ES normalmente via HTTP
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = '../src/main.js';
+      document.body.appendChild(script);
+      console.log('✓ Carregando módulos ES via HTTP');
+    }
+  </script>
+
+  <!-- Fallback para navegadores antigos sem ES modules -->
+  <noscript>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'VT323', monospace;
+        color: #33ff00;
+        background: #050505;
+      }
+      .noscript-warning {
+        border: 2px solid #33ff00;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 500px;
+      }
+    </style>
+    <div class="noscript-warning">
+      <h2>⚠️ JavaScript Desativado</h2>
+      <p>Este jogo requer JavaScript para funcionar.</p>
+      <p>Ative JavaScript nas configurações do navegador.</p>
+    </div>
+  </noscript>
+</body>
+</html>

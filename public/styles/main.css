@@ -1,0 +1,27 @@
+/**
+ * Main CSS - Imports all styles
+ * Organization:
+ * - theme/ : Color schemes, fonts, CRT effects
+ * - components/ : UI components (shop, table, hud, cards)
+ * - animations/ : Keyframes and transitions
+ */
+
+/* Theme & Base */
+@import './theme/variables.css';
+@import './theme/crt.css';
+
+/* Components Base */
+@import './components/monitor.css';
+@import './components/layout.css';
+
+/* Screen-specific Components */
+@import './components/shop.css';
+@import './components/table.css';
+@import './components/result.css';
+
+/* Audio Controls */
+@import './components/audio.css';
+
+/* Animations */
+@import './animations/crt.css';
+@import './animations/ui.css';

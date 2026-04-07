@@ -1,0 +1,39 @@
+{
+  "name": "blackjack-game",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Blackjack game with modular architecture, sound system, and GitHub Pages ready",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --coverage-reporters=text --coverage-reporters=html",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "lint": "eslint src/ --fix",
+    "dev": "python -m http.server 8000 --directory public",
+    "build": "echo 'Static site - ready for GitHub Pages deployment'",
+    "prebuild": "npm test"
+  },
+  "keywords": [
+    "blackjack",
+    "game",
+    "enterprise",
+    "modular",
+    "vanilla-js",
+    "es6-modules",
+    "singleton",
+    "observer-pattern",
+    "state-machine"
+  ],
+  "author": "Blackjack Game",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "@babel/preset-env": "^7.23.0",
+    "eslint": "^8.52.0"
+  }
+}
