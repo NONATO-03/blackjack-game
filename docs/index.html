@@ -57,17 +57,18 @@
 
   <!-- Development Console Hook -->
   <script>
-    // Detectar base path dinamicamente
-    const basePath = new URL('./', import.meta.url || location.href).pathname;
+    // Detectar ambiente e base path
+    const basePath = location.pathname;
     const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
     const isGitHubPages = location.hostname.includes('github.io');
     
     // Set global base path para módulos ES
-    window.__BASE_PATH__ = isDev ? './' : '/blackjack-game/';
+    window.__BASE_PATH__ = isGitHubPages ? '/blackjack-game/' : './';
     
     console.log('🎰 Blackjack Game - v1.0.0-beta');
     console.log('Base path:', window.__BASE_PATH__);
-    console.log('Environment:', isDev ? 'Development' : 'GitHub Pages');
+    console.log('Environment:', isDev ? 'Development' : isGitHubPages ? 'GitHub Pages' : 'Production');
+    console.log('Current path:', location.pathname);
     
     // Detectar se ES modules podem ser carregados
     const isFileProtocol = location.protocol === 'file:';
@@ -126,7 +127,7 @@
       script.src = window.__BASE_PATH__ + 'src/main.js';
       document.body.appendChild(script);
       console.log('✓ Carregando módulos ES via HTTP');
-      console.log('Script URL:', script.src);
+      console.log('Script URL:', window.__BASE_PATH__ + 'src/main.js');
     }
     
     // Flag para indicar que JS está ativo
